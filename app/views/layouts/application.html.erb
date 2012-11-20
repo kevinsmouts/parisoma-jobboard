@@ -1,14 +1,67 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ParisomaJobBoard</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
 
-<%= yield %>
+	<!--[if lt IE 9]>
+	    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+	  <![endif]-->
 
-</body>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+	<div class="navbar navbar-static-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<%= link_to "PARISOMA Job Board", root_url, :class =>"brand" %>
+				<div class="span3">
+					<ul class="nav">
+						<li><%= link_to "Link 1", root_url %></li>
+						<li><%= link_to "Link 2", root_url %></li>
+					</ul>
+				</div>
+				<div class="span3">
+				</div>
+				<div class="span3">
+					<ul class="nav">
+						<% if current_user %>
+						<li><%= link_to "My account", user_path(current_user.id) %></li>
+						<li><%= link_to "Log out", :logout %></li>
+						<% else %>						
+						<li><%= link_to "Log in", :login %></li>
+						<li><%= link_to "Register", new_user_path %></li>
+						<% end %>
+					
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="container">
+
+      <% flash.each do |name, msg| %>
+		<div class="row">
+			<div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+				<a class="close" data-dismiss="alert">×</a>
+				<%= msg %>
+			</div>
+		</div>
+      <% end %>
+
+	<div class="row">
+		<div class="span12">
+			 <%= content_tag :h1, yield(:title) if show_title? %>
+		      <%= yield %>
+		</div>
+
+	</div>
+     
+    </div>
+  </body>
 </html>
