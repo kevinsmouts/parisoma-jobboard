@@ -11,15 +11,45 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121120053903) do
+ActiveRecord::Schema.define(:version => 20121122025931) do
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "description"
+    t.string   "logo"
+    t.string   "industry"
+    t.string   "headquarters"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "job_offers", :force => true do |t|
+    t.string   "title"
+    t.datetime "start_date"
+    t.datetime "open_until"
+    t.text     "job_description"
+    t.text     "qualifications"
+    t.string   "field_of_expertise"
+    t.string   "location"
+    t.string   "contact_email"
+    t.integer  "company_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "job_offers", ["company_id"], :name => "index_job_offers_on_company_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
+    t.string   "company_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
+
+  add_index "users", ["company_id"], :name => "index_users_on_company_id"
 
 end

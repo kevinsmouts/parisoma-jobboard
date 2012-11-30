@@ -1,4 +1,6 @@
 class UserSessionsController < ApplicationController
+  before_filter :require_no_user, :except => :destroy
+  
   def new
     @user_session = UserSession.new
   end

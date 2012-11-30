@@ -1,15 +1,21 @@
 <%= simple_form_for @user_session, :html => { :class => 'form-horizontal' } do |f| %>
 
-	
+	<fieldset class="control-group">
+		
+		
+
 	<%= f.input :email, :required => false, :placeholder => "user@domain.com" %>
 	<%= f.input :password, :required => false %>
-
-
-	<div class="form-actions">
+	<div class="controls">
 		<%= f.submit "Log in", :class => 'btn btn-primary' %>
 	</div>
+		</fieldset>
+		
+		<% end %>
 
 
-<% end %>
+	<div class="well well-small">
+		Don't have an account yet? <%= link_to "Register", register_path %>
+	</div>
 
 

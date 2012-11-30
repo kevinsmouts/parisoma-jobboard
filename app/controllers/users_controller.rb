@@ -1,31 +1,49 @@
 class UsersController < ApplicationController
+  before_filter :require_no_user, :only => [:create, :new]
+
+  before_filter :create_company, :only => :create
+  load_and_authorize_resource
   def new
-    @user = User.new
+    @company = Company.new
   end
   
   def create
-    @user = User.new(params[:user])
-    if @user.save
-      redirect_to root_url, :notice => "Registration successful."
+    @user.company_id = @company.id
+      if @user.save
+        redirect_to root_url, :notice => "Registration successful."
+      else
+        @company.destroy
+        render :action => 'new'
+      end
     else
-      render :action => 'new'
-    end
   end
 
   def edit
-    @user = User.find(params[:id])
   end
   
   def show
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       redirect_to root_url, :notice  => "Successfully updated user."
     else
       render :action => 'edit'
     end
   end
+  
+private
+  
+  def create_company
+    @company = Company.new(params[:company])
+    if @company.save
+      
+    else
+      @user = User.new
+      @user.email = params[:user][:email]
+      render :action => 'new'
+    end
+
+  end
+  
 end

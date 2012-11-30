@@ -1,0 +1,21 @@
+one:
+  title: MyString
+  start_date: 2012-11-21 18:59:31
+  open_until: 2012-11-21 18:59:31
+  job_description: MyString
+  qualifications: MyString
+  field: MyString
+  location: MyString
+  contact_email: MyString
+  company_id: 1
+
+two:
+  title: MyString
+  start_date: 2012-11-21 18:59:31
+  open_until: 2012-11-21 18:59:31
+  job_description: MyString
+  qualifications: MyString
+  field: MyString
+  location: MyString
+  contact_email: MyString
+  company_id: 1

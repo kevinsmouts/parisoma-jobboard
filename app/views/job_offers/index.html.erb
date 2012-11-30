@@ -1,0 +1,46 @@
+<%- model_class = JobOffer -%>
+<div class="span12 page-header">
+<div class="span9">
+	<h1>Open Job Offers <% if defined?(@researched_field) %>in <%= @researched_field.to_s %> <% end %></h1>
+</div>
+  <div class="span2" style="line-height: 40px; padding: 10px;">
+  	<%= link_to "Offer a new position",
+	            new_job_offer_path,
+	            :class => 'btn btn-parisoma' %>
+  </div>
+</div>
+
+<div class="span12">
+	<% fields_array = Array.new %>
+	<% @job_offers.each do |job_offer| %>
+	<% unless fields_array.include? job_offer.field_of_expertise  %>
+	<% fields_array << job_offer.field_of_expertise.to_s %>
+	<% end %>
+	<% end %>
+	
+	<% unless fields_array.size == 1 %>
+
+	<ul class="breadcrumb">
+		<li>Filter by field<span class="divider"> : </span></li>
+	<% fields_array.each do |field_filter| %>
+	<li><%= link_to field_filter, "/field/"+field_filter %> <span class="divider">  </span></li>
+	<% end %>
+	</ul>
+	<% end %>
+	<% if defined?(@researched_field) %>  <%= link_to "Back", root_url, :class => "btn" %> <% end %>
+</div>
+
+<% @job_offers.each do |job_offer| %>
+<div class="span12" style="border-bottom:1px dotted #bbb;">
+<div class="span6">
+	<h3><%= link_to job_offer.title, job_offer_path(job_offer) %></h3>
+	<%= job_offer.field_of_expertise %>
+</div>
+<div class="span3">
+	<%= link_to parent_company(job_offer.company_id).name, company_path(parent_company(job_offer.company_id)) %>, <%= job_offer.location %>
+</div>
+<div class="span2" style="line-height: 40px; padding: 10px;">
+	<%= link_to "View offer", job_offer_path(job_offer), :class => "btn btn-success" %>
+</div>
+</div>
+<% end %>

@@ -1,0 +1,47 @@
+<%- model_class = Company -%>
+<div class="page-header">
+	<h1><%= @company.name %></h1>
+</div>
+
+<div class="span3">
+	<img src="<%= @company.logo %>" alt="<%= @company.name %> logo" width="100%">
+	<% if can? :update, @company%>
+	<center>
+		<%= link_to "Edit profile", edit_company_path(@company), :class => 'btn' %>
+	</center>
+	<% end %>
+</div>
+<div class="span8">
+	<dl class="dl-horizontal">
+
+		<dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
+		<dd><%= link_to @company.url, @company.url %></dd>
+		<dt><strong><%= model_class.human_attribute_name(:headquarters) %>:</strong></dt>
+		<dd><%= @company.headquarters %></dd>
+		<dt><strong><%= model_class.human_attribute_name(:industry) %>:</strong></dt>
+		<dd><%= @company.industry %></dd>
+
+		<dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+		<dd><%= @company.description %></dd>
+	</dl>
+</div>
+<div class="span12" style="margin-top:20px;">
+		<h1>Current Job Offers</h1>
+	<% job_offers.each do |job_offer| %>
+	<div class="span12" style="border-bottom:1px dotted #bbb;">
+	<div class="span6">
+		<h3><%= link_to job_offer.title, job_offer_path(job_offer) %></h3>
+		<%= job_offer.field_of_expertise %>
+	</div>
+	<div class="span2">
+		<%= job_offer.location %>
+	</div>
+	<div class="span3" style="line-height: 40px; padding: 10px; float:right;">
+		<%= link_to "View offer", job_offer_path(job_offer), :class => "btn btn-success" %>
+			<% if can? :update, job_offer %><%= link_to "Edit offer", edit_job_offer_path(job_offer), :class => "btn btn-info" %> <% end %>
+	</div>
+	</div>
+	
+	<% end %>
+</div>
+

@@ -1,0 +1,62 @@
+<%- model_class = JobOffer -%>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              job_offers_path, :class => 'btn'  %>
+</div>
+<div class="span12 page-header">
+<div class="span8">
+	<h1><%= @job_offer.title %></h1>
+	
+	<%= company.name %>, <%= @job_offer.location %>
+</div>
+  <div class="span3" style="line-height: 40px; padding: 10px;">
+Offer posted on <%= @job_offer.created_at.strftime("%B %d, %Y") %>
+  </div>
+</div>
+
+<div class="span8">
+	<dl class="dl-horizontal">
+	  <dt><strong><%= model_class.human_attribute_name(:start_date) %>:</strong></dt>
+	  <dd><% if future_start_date? %>						
+		<%= @job_offer.start_date.strftime("%A, %B %d, %Y") %>
+		<% else %>
+		ASAP
+		<% end %></dd>
+	  <dt><strong><%= model_class.human_attribute_name(:job_description) %>:</strong></dt>
+	  <dd><%= @job_offer.job_description %></dd>
+	  <dt><strong><%= model_class.human_attribute_name(:qualifications) %>:</strong></dt>
+	  <dd><%= @job_offer.qualifications %></dd>
+	  <dt><strong><%= model_class.human_attribute_name(:field_of_expertise) %>:</strong></dt>
+	  <dd><%= @job_offer.field_of_expertise %></dd>
+	  <dt><strong>This position is based in:</strong></dt>
+	  <dd><%= @job_offer.location %></dd>
+	</dl>	
+</div>
+<div class="span3" style="background-color:#e5e5e5; padding:2%;">
+	<center>
+	<h3>Apply for this position</h3>
+	<%= link_to "Apply now", "/apply/"+@job_offer.id.to_s, :class => "btn btn-parisoma", :target => "_blank" %><br>
+	<%= link_to "or forward the offer", "mailto:?subject=Job%20Offer%20-%20"+@job_offer.title+"&body=#{request.protocol}#{request.host_with_port}#{request.fullpath}", :target => "_blank" %>
+	</center>
+</div>
+<div class="span 8">
+	<h3>About <%= company.name %></h3>
+	<dl class="dl-horizontal">
+	  <dd><img src="<%= @company.logo %>" alt="<%= company.name %> logo" width="100"></dd>
+	  <dd><%= link_to @company.name + " website", @company.url %></dd>
+	  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+	  <dd><%= @company.description %></dd>
+
+	  <dt><strong><%= model_class.human_attribute_name(:industry) %>:</strong></dt>
+	  <dd><%= @company.industry %></dd>
+	  <dt><strong><%= model_class.human_attribute_name(:headquarters) %>:</strong></dt>
+	  <dd><%= @company.headquarters %></dd>
+	</dl>
+	
+</div>
+
+
+
+
+
