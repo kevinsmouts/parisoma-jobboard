@@ -6,9 +6,9 @@
 <div class="span3">
 	<img src="<%= @company.logo %>" alt="<%= @company.name %> logo" width="100%">
 	<% if can? :update, @company%>
-	<center>
+	<p style="text-align:center;margin-top:20px;">
 		<%= link_to "Edit profile", edit_company_path(@company), :class => 'btn' %>
-	</center>
+	</p>
 	<% end %>
 </div>
 <div class="span8">
