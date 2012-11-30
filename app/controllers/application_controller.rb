@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
-    helper :all
+    helper :layout, :error_messages
     helper_method :current_user_session, :current_user, :current_user_company
 
 

@@ -3,6 +3,12 @@
   <h1>My profile</h1>
 </div>
 
+<div class="well">
+	You are registered as <%= link_to @user.email, user_path(@user) %>, as a member of <%= link_to company.name, company_path(@company) %> which currently has <%= job_offers.count %> job offer<% if job_offers.count > 1 %>s<% end %> listed.
+</div>
+
+
+
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
   <dd><%= @user.email %></dd>
