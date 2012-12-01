@@ -9,6 +9,6 @@
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                companies_path, :class => 'btn' %>
+                company_path(@company), :class => 'btn' %>
   </div>
 <% end %>

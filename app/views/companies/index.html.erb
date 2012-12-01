@@ -12,8 +12,6 @@
       <th><%= model_class.human_attribute_name(:logo) %></th>
       <th><%= model_class.human_attribute_name(:industry) %></th>
       <th><%= model_class.human_attribute_name(:headquarters) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -27,8 +25,6 @@
         <td><%= company.logo %></td>
         <td><%= company.industry %></td>
         <td><%= company.headquarters %></td>
-        <td><%= company.user_id %></td>
-        <td><%=l company.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_company_path(company), :class => 'btn btn-mini' %>
