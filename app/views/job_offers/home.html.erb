@@ -1,0 +1,20 @@
+<div class="hero-unit" style="margin-top:20px;">
+	<h1>Welcome on PARISOMA Job Board</h1>
+	<p>This Job Board is meant to advertise open positions in SF Bay Area startups to the PARISOMA community.</p>
+	<p>
+		<a href="http://www.parisoma.com" class="btn btn-parisoma btn-large">Learn more about PARISOMA</a> or <%= link_to "start browsing our job offers", job_offers_path %>.
+	</p>
+</div>
+
+
+<div class="span12 page-header">
+<div class="span9">
+	<h1>Latest Job Offers</h1><%= link_to "View all", job_offers_path %>
+</div>
+  <div class="span2" style="line-height: 40px; padding: 10px;">
+  	<%= link_to "Offer a new position",
+	            new_job_offer_path,
+	            :class => 'btn btn-parisoma' %>
+  </div>
+</div>
+<%= render :partial => 'shared/job_offers_listing', :object => @job_offers %>

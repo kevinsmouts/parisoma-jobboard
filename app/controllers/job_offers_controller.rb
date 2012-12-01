@@ -5,8 +5,13 @@ class JobOffersController < ApplicationController
 
  
   def index
+    @job_offers = JobOffer.find(:all, :order => "created_at DESC")
   end
-
+  
+  def home
+    @job_offers = JobOffer.find(:all, :order => "created_at DESC", :limit => 5)
+  end
+  
   def show
   end
 

@@ -1,0 +1,14 @@
+<% @job_offers.each do |job_offer| %>
+<div class="span12" style="border-bottom:1px dotted #bbb;">
+<div class="span6" style="padding-bottom:20px;">
+	<h3><%= link_to job_offer.title, job_offer_path(job_offer) %></h3>
+	<%= job_offer.field_of_expertise %>
+</div>
+<div class="span3" style="padding-top:40px;">
+	<%= link_to parent_company(job_offer.company_id).name, company_path(parent_company(job_offer.company_id)) %>, <%= job_offer.location %>
+</div>
+<div class="span2" style="line-height: 40px; padding: 30px;">
+	<%= link_to "View offer", job_offer_path(job_offer), :class => "btn btn-success" %>
+</div>
+</div>
+<% end %>

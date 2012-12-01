@@ -8,7 +8,7 @@ class Ability
     #   can :manage, :all
     # else
       can :read, :all
-      can [:field_filter, :apply], JobOffer
+      can [:field_filter, :apply, :home], JobOffer
       can :create, User
       can :create, Company do |company|
         user.company_id.to_i == nil
