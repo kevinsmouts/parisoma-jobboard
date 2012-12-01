@@ -19,17 +19,16 @@
 	<div class="navbar navbar-static-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<%= link_to "PARISOMA Job Board", root_url, :class =>"brand" %>
-				<div class="span3">
+				<%= link_to image_tag('parisoma-jobboard-beta-logo.png', :size => "250x37"), root_url, :class =>"brand" %>
+				<div class="span6">
 					<ul class="nav">
 						<li><%= link_to "Job Offers", job_offers_path %></li>
 						<li><%= link_to "Companies", companies_path %></li>
 					</ul>
 				</div>
+		
 				<div class="span3">
-				</div>
-				<div class="span3">
-					<ul class="nav">
+					<ul class="nav" style="float:right !important;">
 						<% if current_user %>
 						<li><%= link_to "My account", user_path(current_user.id) %></li>
 						<li><%= link_to "Log out", :logout %></li>
