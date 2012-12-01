@@ -50,14 +50,14 @@
 	<h2>Your Company's current Job Offers</h2>
 	<% job_offers.each do |job_offer| %>
 	<div class="span12" style="border-bottom:1px dotted #bbb;">
-	<div class="span6">
+	<div class="span6" style="padding-bottom:20px;">
 		<h3><%= link_to job_offer.title, job_offer_path(job_offer) %></h3>
 		<%= job_offer.field_of_expertise %>
 	</div>
-	<div class="span2">
+	<div class="span2" style="padding-top:40px;">
 		<%= job_offer.location %>
 	</div>
-	<div class="span3" style="line-height: 40px; padding: 10px; float:right;">
+	<div class="span3" style="line-height: 40px; padding: 30px; float:right;">
 		<%= link_to "View offer", job_offer_path(job_offer), :class => "btn btn-success" %>
 			<% if can? :update, job_offer %><%= link_to "Edit offer", edit_job_offer_path(job_offer), :class => "btn btn-info" %> <% end %>
 	</div>
