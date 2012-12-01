@@ -1,9 +1,9 @@
 <%- model_class = JobOffer -%>
-
-<div class="form-actions">
+<div class="well well-small" style="margin-top:20px;">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               job_offers_path, :class => 'btn'  %>
 </div>
+
 <div class="span12 page-header">
 <div class="span8">
 	<h1><%= @job_offer.title %></h1>
