@@ -20,14 +20,14 @@
 		<div class="navbar-inner">
 			<div class="container">
 				<%= link_to image_tag('parisoma-jobboard-beta-logo.png', :size => "250x37"), root_url, :class =>"brand" %>
-				<div class="span6">
+				<div class="span5">
 					<ul class="nav">
 						<li><%= link_to "Job Offers", job_offers_path %></li>
 						<li><%= link_to "Companies", companies_path %></li>
 					</ul>
 				</div>
 		
-				<div class="span3">
+				<div class="span3 offset1">
 					<ul class="nav" style="float:right !important;">
 						<% if current_user %>
 						<li><%= link_to "My account", user_path(current_user.id) %></li>
@@ -53,7 +53,7 @@
 		</div>
       <% end %>
 
-	<div class="row">
+	<div class="row" style="min-height:600px;">
 	
 			 <%= content_tag :h1, yield(:title) if show_title? %>
 		      <%= yield %>
