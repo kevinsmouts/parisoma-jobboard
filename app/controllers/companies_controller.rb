@@ -24,7 +24,7 @@ class CompaniesController < ApplicationController
 
   def update
     if @company.update_attributes(params[:company])
-      redirect_to @company, :notice  => "Successfully updated company."
+      redirect_to @company, :notice  => "Your company profile has been successfully updated."
     else
       render :action => 'edit'
     end

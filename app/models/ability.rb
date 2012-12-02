@@ -17,11 +17,11 @@ class Ability
       can [:update, :destroy], JobOffer do |job_offer|
         job_offer.company_id == user.try(:company_id).to_i
       end
-      can [:update, :destroy], Company do |company|
+      can :update, Company do |company|
         company.id == user.company_id.to_i
       end
       
-      can [:read, :update, :destroy], User do |target|
+      can [:read, :update], User do |target|
         target.id == user.id
       end
     end
