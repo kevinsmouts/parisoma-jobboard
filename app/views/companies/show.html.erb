@@ -1,15 +1,11 @@
 <%- model_class = Company -%>
 <div class="page-header">
 	<h1><%= @company.name %></h1>
+	<% if can? :update, @company %> It's your company! <%= link_to "Click here to edit your profile or manage your job offers", user_path(current_user) %> <% end %>
 </div>
 
 <div class="span3">
 	<img src="<%= @company.logo %>" alt="<%= @company.name %> logo" width="100%">
-	<% if can? :update, @company%>
-	<p style="text-align:center;margin-top:20px;">
-		<%= link_to "Edit profile", edit_company_path(@company), :class => 'btn' %>
-	</p>
-	<% end %>
 </div>
 <div class="span8">
 	<dl class="dl-horizontal">
@@ -38,7 +34,6 @@
 	</div>
 	<div class="span3" style="line-height: 40px; padding: 30px; float:right;">
 		<%= link_to "View offer", job_offer_path(job_offer), :class => "btn btn-parisoma2" %>
-			<% if can? :update, job_offer %><%= link_to "Edit offer", edit_job_offer_path(job_offer), :class => "btn" %> <% end %>
 	</div>
 	</div>
 	
