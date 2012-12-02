@@ -13,7 +13,7 @@ class Ability
         user.company_id.to_i == nil
       end
       can [:read, :create], JobOffer
-      can :read, Company
+      can [:read], Company
       can [:update, :destroy], JobOffer do |job_offer|
         job_offer.company_id == user.try(:company_id).to_i
       end

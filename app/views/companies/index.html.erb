@@ -1,44 +1,27 @@
 <%- model_class = Company -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1>Companies index</h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:url) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:logo) %></th>
-      <th><%= model_class.human_attribute_name(:industry) %></th>
-      <th><%= model_class.human_attribute_name(:headquarters) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @companies.each do |company| %>
-      <tr>
-        <td><%= link_to company.id, company_path(company) %></td>
-        <td><%= company.name %></td>
-        <td><%= company.url %></td>
-        <td><%= company.description %></td>
-        <td><%= company.logo %></td>
-        <td><%= company.industry %></td>
-        <td><%= company.headquarters %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_company_path(company), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      company_path(company),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%
+@grouped = {}
+@companies.each do |company|
+  letter = company.initial.upcase
+  @grouped[letter] ||= []
+  @grouped[letter] << company
+end
+ %>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_company_path,
-            :class => 'btn btn-primary' %>
+<div class="span9 offset1">
+<ul>
+  <% @grouped.keys.sort.each do |letter| %>
+    <li>
+      <h2><%= letter %></h2>
+      <ul>
+        <% @grouped[letter].each do |company| %>
+          <li><%= link_to company.name, company_path(company) %> <% if company.industry != "" %>- <%= company.industry %> <% end %></li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>
+</div>

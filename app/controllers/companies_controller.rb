@@ -3,6 +3,7 @@ class CompaniesController < ApplicationController
   load_and_authorize_resource
   
   def index
+    @companies = Company.find(:all, :order => "UPPER(name)")
   end
 
   def show
@@ -34,4 +35,5 @@ class CompaniesController < ApplicationController
     @company.destroy
     redirect_to companies_url, :notice => "Successfully destroyed company."
   end
+    
 end
