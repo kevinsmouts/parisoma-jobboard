@@ -51,8 +51,8 @@ class JobOffersController < ApplicationController
   
   def apply
     job_offer = JobOffer.find(params[:id])
-    email = job_offer.contact_email
-    redirect_to "mailto:"+email+"&subject=[PARISOMA Job Board] Application for "+job_offer.title
+    application = "mailto:"+job_offer.contact_email+"?subject="+CGI::escape("[PARISOMA Job Board] Application for "+job_offer.title)
+    redirect_to application
   end
   
 end
