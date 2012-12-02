@@ -32,7 +32,7 @@ class JobOffersController < ApplicationController
 
   def update
     if @job_offer.update_attributes(params[:job_offer])
-      redirect_to @job_offer, :notice  => "Successfully updated job offer."
+      redirect_to user_path(current_user), :notice  => "Successfully updated job offer."
     else
       render :action => 'edit'
     end
@@ -40,7 +40,7 @@ class JobOffersController < ApplicationController
 
   def destroy
     @job_offer.destroy
-    redirect_to job_offers_url, :notice => "Successfully destroyed job offer."
+    redirect_to user_path(current_user), :notice => "Successfully destroyed job offer."
   end
   
   def field_filter
@@ -52,7 +52,7 @@ class JobOffersController < ApplicationController
   def apply
     job_offer = JobOffer.find(params[:id])
     email = job_offer.contact_email
-    redirect_to "mailto:"+email
+    redirect_to "mailto:"+email+"&subject=[PARISOMA Job Board] Application for "+job_offer.title
   end
   
 end

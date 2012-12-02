@@ -7,13 +7,13 @@ class Ability
     # if user.role? :admin
     #   can :manage, :all
     # else
-      can :read, :all
       can [:field_filter, :apply, :home], JobOffer
       can :create, User
       can :create, Company do |company|
         user.company_id.to_i == nil
       end
-      can :create, JobOffer
+      can [:read, :create], JobOffer
+      can :read, Company
       can [:update, :destroy], JobOffer do |job_offer|
         job_offer.company_id == user.try(:company_id).to_i
       end
@@ -21,7 +21,7 @@ class Ability
         company.id == user.company_id.to_i
       end
       
-      can [:update, :destroy], User do |target|
+      can [:read, :update, :destroy], User do |target|
         target.id == user.id
       end
     end
