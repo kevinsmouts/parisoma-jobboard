@@ -1,5 +1,9 @@
 ParisomaJobBoard::Application.routes.draw do
 
+  match "about" => "static#about", :as => :about
+  match "contact" => "static#contact", :as => :contact
+  match "faq" => "static#faq", :as => :faq
+
   resources :job_offers
   match '/field/:field_name' => 'job_offers#field_filter'
 
