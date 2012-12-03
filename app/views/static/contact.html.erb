@@ -1,3 +1,18 @@
 <div class="page-header">
   <h1>Contact</h1>
 </div>
+
+<div class="span6">
+	<h2>We love feedback</h2>
+	<p>As you can see, this beta version is still a little rough and we would love to hear from you with interesting feedback. Obviously don't hesitate to contact us if something isn't working.</p>
+</div>
+<div class="span6">
+
+<%= simple_form_for :contact, :url => "/send_contact" do |f| %>
+	<%= f.input :email, :as => :email, :input_html => { :value => email } %>
+  	<%= f.input :subject, :required => false %>
+	<%= f.input :content, :as => :text, :input_html => { :rows => 7 }%>
+  	<%= f.button :submit, "Send", :class => "btn btn-parisoma" %>
+<% end %>
+	
+</div>

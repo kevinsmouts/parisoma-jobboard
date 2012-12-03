@@ -1,5 +1,8 @@
 ParisomaJobBoard::Application.routes.draw do
 
+
+  post "send_contact" => "static#send_contact", :as => :send_contact
+
   match "about" => "static#about", :as => :about
   match "contact" => "static#contact", :as => :contact
   match "faq" => "static#faq", :as => :faq
