@@ -13,21 +13,26 @@
 <div class="span12">
 	<% fields_array = Array.new %>
 	<% @job_offers.each do |job_offer| %>
-	<% unless fields_array.include? job_offer.field_of_expertise  %>
-	<% fields_array << job_offer.field_of_expertise.to_s %>
-	<% end %>
+		<% array = Array.new %>
+		<% array = job_offer.field_of_expertise.to_s.split( /, */ ) %>
+		<% array.each do |item| %>
+			<% unless fields_array.include? item  %>
+				<% fields_array << item %>
+			<% end %>
+		<% end %>
 	<% end %>
 	
 	<% unless fields_array.size == 1 %>
 
-	<ul class="breadcrumb">
-		<li>Filter by field<span class="divider"> : </span></li>
-	<% fields_array.each do |field_filter| %>
-	<li><%= link_to field_filter, "/field/"+field_filter %> <span class="divider">  </span></li>
+		<ul class="breadcrumb">
+			<li>Filter by field<span class="divider"> : </span></li>
+		<% fields_array.each do |field_filter| %>
+			<li><%= link_to field_filter, "/field/"+field_filter %> <% unless field_filter == fields_array.last %><span class="divider">-</span><% end %></li>
+		<% end %>
+		</ul>
+	
 	<% end %>
-	</ul>
-	<% end %>
-	<% if defined?(@researched_field) %>  <%= link_to "Back", root_url, :class => "btn" %> <% end %>
+	<% if defined?(@researched_field) %>  <%= link_to "Back", job_offers_url, :class => "btn" %> <% end %>
 </div>
 
 <%= render :partial => 'shared/job_offers_listing', :object => @job_offers %>

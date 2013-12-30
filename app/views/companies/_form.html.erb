@@ -1,10 +1,14 @@
 <%= simple_form_for @company, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :name %>
-  <%= f.input :url %>
-  <%= f.input :description, :as => :text, :input_html => { :cols => 60, :rows => 3}  %>
-  <%= f.input :logo %>
-  <%= f.input :industry %>
-  <%= f.input :headquarters %>
+  	<%= f.input :name %>
+  	<%= f.input :url %>
+  	<%= f.input :description, :as => :text, :input_html => { :cols => 60, :rows => 3}  %>
+  	<%= f.input :logo %>
+  	<%= f.input :industry %>
+	<%= f.input :headquarters_street %>
+	<%= f.input :headquarters_city %>
+	<%= f.input :headquarters_zipcode %>
+	<%= f.input :headquarters_state %>
+	<%= f.input :headquarters_country %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

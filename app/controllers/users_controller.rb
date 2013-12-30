@@ -8,14 +8,41 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user.company_id = @company.id
-      if @user.save
-        redirect_to root_url, :notice => "Registration successful."
+      o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
+      string  =  (0...50).map{ o[rand(o.length)] }.join
+      @user.confirmed = false
+      @user.confirmation_code = string
+      @user.company_id = @company.id
+        if @user.save
+          NotificationsMailer.email_confirmation(@user).deliver
+          redirect_to account_confirmation_path, :notice => "Registration successful, now you need to confirm your account."
+        else
+          @company.destroy
+          render :action => 'new'
+        end
       else
-        @company.destroy
-        render :action => 'new'
+  end
+  
+  def account_confirmation
+    if params[:confirmation_code]
+      code = params[:confirmation_code]
+      @confirmed_user = User.find(:all, :conditions =>{:confirmation_code => code})
+      if @confirmed_user.count == 1 and code != "0"
+        @confirmed_user = @confirmed_user.first
+        @confirmed_user.update_attributes(:confirmed => true, :confirmation_code => "0")
+        NotificationsMailer.signup_confirmation(@confirmed_user).deliver
+        redirect_to login_path, :notice => "Confirmation successful. Now you can log in."
+      else
+        redirect_to account_confirmation_path, :alert => "Wrong confirmation code."
       end
     else
+      
+    end
+  end
+  
+  def testmail
+    @user = current_user
+    NotificationsMailer.email_confirmation(@user).deliver
   end
 
   def edit

@@ -19,15 +19,19 @@ ActiveRecord::Schema.define(:version => 20121122025931) do
     t.string   "description"
     t.string   "logo"
     t.string   "industry"
-    t.string   "headquarters"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "headquarters_street"
+    t.string   "headquarters_city"
+    t.string   "headquarters_zipcode"
+    t.string   "headquarters_state"
+    t.string   "headquarters_country"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "job_offers", :force => true do |t|
     t.string   "title"
-    t.datetime "start_date"
-    t.datetime "open_until"
+    t.date     "start_date"
+    t.date     "open_until"
     t.text     "job_description"
     t.text     "qualifications"
     t.string   "field_of_expertise"
@@ -46,6 +50,8 @@ ActiveRecord::Schema.define(:version => 20121122025931) do
     t.string   "password_salt"
     t.string   "persistence_token"
     t.string   "company_id"
+    t.string   "confirmation_code"
+    t.boolean  "confirmed"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end

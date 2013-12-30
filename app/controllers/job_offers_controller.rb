@@ -45,7 +45,15 @@ class JobOffersController < ApplicationController
   
   def field_filter
     @researched_field = params[:field_name]
-    @job_offers = JobOffer.find(:all, :conditions => { :field_of_expertise => @researched_field })
+    @job_offers_all = JobOffer.find(:all, :order => "created_at DESC")
+    @job_offers = Array.new
+    @job_offers_all.each do |job_offer|
+      fields = Array.new
+      fields = job_offer.field_of_expertise.to_s.split( /, */ )
+      if fields.include? params[:field_name]
+        @job_offers << job_offer
+      end
+    end
     render :action => 'index'
   end
   

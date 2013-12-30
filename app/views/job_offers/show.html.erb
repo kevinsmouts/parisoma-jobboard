@@ -1,14 +1,13 @@
 <%- model_class = JobOffer -%>
 <div class="well well-small" style="margin-top:20px;">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              job_offers_path, :class => 'btn'  %>
+  <%= link_to "Back to Job Offers list", job_offers_path, :class => 'btn'  %>
 </div>
 
 <div class="span12 page-header">
 <div class="span8">
 	<h1><%= @job_offer.title %></h1>
 	
-	<%= company.name %>, <%= @job_offer.location %>
+		<%= link_to parent_company(@job_offer.company_id).name, company_path(parent_company(@job_offer.company_id)) %>, <%= @job_offer.location %>
 </div>
   <div class="span3" style="line-height: 40px; padding: 10px;">
 Offer posted on <%= @job_offer.created_at.strftime("%B %d, %Y") %>
@@ -50,8 +49,16 @@ Offer posted on <%= @job_offer.created_at.strftime("%B %d, %Y") %>
 
 	  <dt><strong><%= model_class.human_attribute_name(:industry) %>:</strong></dt>
 	  <dd><%= @company.industry %></dd>
-	  <dt><strong><%= model_class.human_attribute_name(:headquarters) %>:</strong></dt>
-	  <dd><%= @company.headquarters %></dd>
+	 <dt><strong><%= model_class.human_attribute_name(:headquarters_street) %>:</strong></dt>
+	<dd><%= @company.headquarters_street %></dd>
+	<dt><strong><%= model_class.human_attribute_name(:headquarters_city) %>:</strong></dt>
+	<dd><%= @company.headquarters_city %></dd>
+	<dt><strong><%= model_class.human_attribute_name(:headquarters_zipcode) %>:</strong></dt>
+	<dd><%= @company.headquarters_zipcode %></dd>
+	<dt><strong><%= model_class.human_attribute_name(:headquarters_state) %>:</strong></dt>
+	<dd><%= @company.headquarters_state %></dd>
+	<dt><strong><%= model_class.human_attribute_name(:headquarters_country) %>:</strong></dt>
+	<dd><%= @company.headquarters_country %></dd>
 	</dl>
 	
 </div>

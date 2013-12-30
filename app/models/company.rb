@@ -1,5 +1,5 @@
 class Company < ActiveRecord::Base
-  attr_accessible :name, :url, :description, :logo, :industry, :headquarters
+  attr_accessible :name, :url, :description, :logo, :industry, :headquarters_street, :headquarters_city, :headquarters_zipcode, :headquarters_state, :headquarters_country
   
   has_many :users  
   has_many :job_offers

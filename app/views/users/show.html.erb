@@ -31,8 +31,16 @@
 		<dd><h3><%= company.name %></h3></dd>
 		<dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
 		<dd><%= link_to company.url, company.url %></dd>
-		<dt><strong><%= model_class.human_attribute_name(:headquarters) %>:</strong></dt>
-		<dd><%= company.headquarters %></dd>
+		<dt><strong><%= model_class.human_attribute_name(:headquarters_street) %>:</strong></dt>
+		<dd><%= company.headquarters_street %></dd>
+		<dt><strong><%= model_class.human_attribute_name(:headquarters_city) %>:</strong></dt>
+		<dd><%= company.headquarters_city %></dd>
+		<dt><strong><%= model_class.human_attribute_name(:headquarters_zipcode) %>:</strong></dt>
+		<dd><%= company.headquarters_zipcode %></dd>
+		<dt><strong><%= model_class.human_attribute_name(:headquarters_state) %>:</strong></dt>
+		<dd><%= company.headquarters_state %></dd>
+		<dt><strong><%= model_class.human_attribute_name(:headquarters_country) %>:</strong></dt>
+		<dd><%= company.headquarters_country %></dd>
 		<dt><strong><%= model_class.human_attribute_name(:industry) %>:</strong></dt>
 		<dd><%= company.industry %></dd>
 
@@ -58,8 +66,10 @@
 			<% if can? :update, job_offer %><%= link_to "Edit offer", edit_job_offer_path(job_offer), :class => "btn" %> <% end %>
 			<% if can? :destroy, job_offer %><%= link_to job_offer_path(job_offer), :method => :delete, :confirm => "Are you sure you want to delete this job offer?",:class => "btn btn-parisoma" do %> <i class="icon-remove"></i> <% end %> <% end %>
 	</div>
-	</div>
-	
+	</div>	
 	<% end %>
+	<div class="span12" style="margin-top:20px">
+		<% if can? :update, @company %><center><%= link_to "Offer a new position", new_job_offer_path, :class => 'btn btn-parisoma' %></center><% end %>
+	</div>
 </div>
 

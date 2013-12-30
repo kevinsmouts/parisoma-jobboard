@@ -1,8 +1,12 @@
 ParisomaJobBoard::Application.routes.draw do
 
+  match "users/account_confirmation/:confirmation_code" => "users#account_confirmation", :as => :account_confirmation_with_code
+  match "users/account_confirmation/" => "users#account_confirmation", :as => :account_confirmation
 
   post "send_contact" => "static#send_contact", :as => :send_contact
-
+  
+  match "testmail" => "users#testmail"
+  
   match "about" => "static#about", :as => :about
   match "contact" => "static#contact", :as => :contact
   match "faq" => "static#faq", :as => :faq
@@ -13,8 +17,7 @@ ParisomaJobBoard::Application.routes.draw do
   resources :companies
 
   resources :users, :user_sessions
-
-
+  
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
   match 'register' => 'users#new', :as => :register

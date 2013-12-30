@@ -6,11 +6,18 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    @user_session = UserSession.new(params[:user_session])
-    if @user_session.save
-      redirect_to root_url, :notice => "Successfully logged in."
-    else
-      render :action => 'new'
+    user = User.find(:all, :conditions =>{:email => params[:user_session][:email]}).first
+    if user
+      if user.confirmed
+        @user_session = UserSession.new(params[:user_session])
+        if @user_session.save
+          redirect_to root_url, :notice => "Successfully logged in."
+        else
+          render :action => 'new'
+        end
+      else
+        redirect_to account_confirmation_path, :alert => "You need to confirm your account before logging in."
+      end
     end
   end
 

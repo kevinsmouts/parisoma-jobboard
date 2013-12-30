@@ -8,7 +8,7 @@ class Ability
     #   can :manage, :all
     # else
       can [:field_filter, :apply, :home], JobOffer
-      can :create, User
+      can [:create, :account_confirmation], User
       can :create, Company do |company|
         user.company_id.to_i == nil
       end
@@ -21,7 +21,7 @@ class Ability
         company.id == user.company_id.to_i
       end
       
-      can [:read, :update], User do |target|
+      can [:read, :update, :testmail], User do |target|
         target.id == user.id
       end
     end

@@ -17,6 +17,6 @@ class ContactMailer < ActionMailer::Base
     end
     @content = params[:contact][:content]
 
-    mail to: "kevin@parisoma.com", :subject => @subject+divider+"PARISOMA Job Board Contact Form"
+    mail to: "kevin.smouts@gmail.com", :subject => @subject+divider+"PARISOMA Job Board Contact Form"
   end
 end

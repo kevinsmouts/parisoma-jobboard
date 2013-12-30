@@ -7,8 +7,12 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 gem "nifty-generators", :group => :development
+gem "letter_opener", :group => :development
 gem "authlogic"
 gem "cancan"
+gem 'simple_form'
+gem 'country_select'
+gem 'figaro'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -25,7 +29,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'simple_form'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
